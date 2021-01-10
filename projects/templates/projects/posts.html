@@ -1,0 +1,27 @@
+{% extends 'general/base.html' %}
+
+{% block title %}All Projects{% endblock %}
+
+{% block body %}
+<div class="py-5">
+    <div class="container">
+        <h1 class="text-center">Projects</h1>
+        <hr class="featurette-divider">
+        <br>
+        <div class="row ">
+            {% for project in projects %}
+            <div class="col-lg-4 mb-4 col-md-6 col-sm-12">
+                <div class="card shadow-sm position-relative">
+                    <img class="card-img-top" src="{{ project.image.url }}" >
+                    <div class="card-body">
+                        <h3>{{ project.title }}</h3>
+                        <p class="card-text">{{ project.short_text }}...</p>
+                        <a class="btn btn-primary stretched-link" href="{% url 'project' project.id %}">View</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

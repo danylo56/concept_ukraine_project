@@ -1,0 +1,33 @@
+{% extends 'general/base.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block body %}
+<div class="container">
+    <br>
+    <h1 class="text-center">Events</h1>
+    {% for item in data %}
+    <hr>
+    <br>
+    <style>
+        .img-event{
+            max-height: 500px;
+            max-width: 100%
+        }
+    </style>
+
+    <div class="row featurette " style="min-height: 60vh; align-items: center">
+        <div class="col-lg-5 d-flex justify-content-center {% if item.bool %}order-lg-2 {% endif %}">
+          <img class="img-event w-sm-100" src="{{item.event.image.url}}" alt="">
+        </div>
+      <div class="col-lg-7 {% if item.bool %}order-lg-1 {% endif %}">
+          <br>
+        <h2 class="featurette-heading text-center">{{item.event.title}}</h2>
+        <p class="lead">{{item.event.text}}</p>
+          <span>{{item.event.date}}</span>
+      </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

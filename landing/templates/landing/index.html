@@ -1,0 +1,67 @@
+{% extends 'general/base.html' %}
+
+{% block title %}Concept Ukraine{% endblock %}
+
+{% block body %}
+
+<section class="py-5 text-center header">
+  <div class="col-lg-6 col-md-8 col-sm-10 mx-auto info p-5">
+    <h1 class="fw-light" style="color:white">Concept Ukraine</h1>
+    <p class="lead" style="color:white">
+        Research | Design | Implementation
+    </p>
+    <p>
+      <a href="" class="btn btn-lg btn-primary my-2 col-10 col-lg-4">Металобудівництво</a>
+      <a href="" class="btn btn-lg btn-secondary my-2 col-10 col-lg-4">  Містобудування  </a>
+    </p>
+  </div>
+</section>
+<div class="py-5">
+    <div class="container">
+        <a href="{% url 'all_projects' %}" class="text-center h1 text-decoration-none">Projects</a>
+        <hr>
+        <br>
+        <div class="row ">
+            {% for project in posts %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card shadow-sm position-relative">
+                    <img class="card-img-top" src="{{ project.image.url }}">
+                    <div class="card-body ">
+                        <h3>{{ project.title }}</h3>
+                        <p class="card-text">{{ project.short_text }}...</p>
+                        <a class="btn btn-primary stretched-link" href="{% url 'project' project.id %}">View</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        <a href="{% url 'all_events' %}" class="h1 text-decoration-none">Events</a>
+        {% for item in data %}
+        <br>
+        <hr>
+        <br>
+        <style>
+            .img-event{
+                max-height: 500px;
+                max-width: 100%
+            }
+
+        </style>
+
+        <div class="row featurette " style="min-height: 60vh; align-items: center">
+            <div class="col-lg-5 {% if item.bool %}order-lg-2 {% endif %}">
+              <img class="img-event w-sm-100" src="{{item.event.image.url}}" alt="">
+            </div>
+          <div class="col-lg-7 {% if item.bool %}order-lg-1 {% endif %}">
+              <br>
+            <h2 class="featurette-heading text-center">{{item.event.title}}</h2>
+            <p class="lead">{{item.event.text}}</p>
+              <span>{{item.event.date}}</span>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
